@@ -59,7 +59,7 @@
 			android:textColor="#0099FF"
 			android:layout_below="@id/sign_password"
 			android:layout_alignParentRight="true"
-			android:onClick="signOnLoaderClick"/>
+			android:onClick="onLoaderClick"/>
 		    
 		</RelativeLayout>
 		
