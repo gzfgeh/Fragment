@@ -10,9 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 	private View textLayout, soundsLayout, photoLayout, movieLayout;
+	private TextView textView, soundsView, photoView, movieView;
 	private TextFragment textFragment;
 	private SoundsFragment soundsFragment;
 	private PhotoFragment photoFragment;
@@ -33,14 +36,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
     }
 
 
-    @SuppressLint({ "CommitTransaction", "ResourceAsColor" }) private void selectFragmentNum(int i) {
+    @SuppressLint("ResourceAsColor") private void selectFragmentNum(int i) {
 		// TODO Auto-generated method stub
 		FragmentTransaction ft = fragmentManager.beginTransaction();
 		hideAllFragments(ft);
 		
 		switch (i) {
 		case 0:
-			textLayout.setBackgroundColor(R.color.title_bg);
+			textView.setTextColor(getResources().getColor(R.color.title_bg));
 			if (textFragment == null){
 				textFragment = new TextFragment();
 				ft.add(R.id.container, textFragment);
@@ -50,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			break;
 			
 		case 1:
-			photoLayout.setBackgroundColor(R.color.title_bg);
+			photoView.setTextColor(getResources().getColor(R.color.title_bg));
 			if (photoFragment == null){
 				photoFragment = new PhotoFragment();
 				ft.add(R.id.container, photoFragment);
@@ -60,7 +63,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			break;
 			
 		case 2:
-			soundsLayout.setBackgroundColor(R.color.title_bg);
+			soundsView.setTextColor(getResources().getColor(R.color.title_bg));
 			if (soundsFragment == null){
 				soundsFragment = new SoundsFragment();
 				ft.add(R.id.container, soundsFragment);
@@ -69,7 +72,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 			}
 			break;
 		case 3:
-			movieLayout.setBackgroundColor(R.color.title_bg);
+			movieView.setTextColor(getResources().getColor(R.color.title_bg));;
 			if (movieFragment == null){
 				movieFragment = new MovieFragment();
 				ft.add(R.id.container, movieFragment);
@@ -98,10 +101,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		if (movieFragment != null)
 			ft.hide(movieFragment);
 		
-		textLayout.setBackgroundColor(R.color.bottom_bg);
-		soundsLayout.setBackgroundColor(R.color.bottom_bg);
-		photoLayout.setBackgroundColor(R.color.bottom_bg);
-		movieLayout.setBackgroundColor(R.color.bottom_bg);
+		textView.setTextColor(R.color.bottom_bg);
+		soundsView.setTextColor(R.color.bottom_bg);
+		photoView.setTextColor(R.color.bottom_bg);
+		movieView.setTextColor(R.color.bottom_bg);
 	}
 
 
@@ -115,6 +118,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
 		soundsLayout.setOnClickListener(this);
 		photoLayout.setOnClickListener(this);
 		movieLayout.setOnClickListener(this);
+		textView = (TextView) findViewById(R.id.text_msg);
+		soundsView = (TextView) findViewById(R.id.sounds_msg);
+		photoView = (TextView) findViewById(R.id.photo_msg);
+		movieView = (TextView) findViewById(R.id.movie_msg);
 	}
 
 

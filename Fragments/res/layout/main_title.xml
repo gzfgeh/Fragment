@@ -9,7 +9,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center_vertical"
-	    android:layout_margin="5dp"
+	    android:layout_margin="2dp"
 	    android:id="@+id/left_btn"
 	    android:text="@string/back"
 	    android:textColor="@color/title_btn_text_color"/>
@@ -28,7 +28,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center_vertical"
-	    android:layout_margin="5dp"
+	    android:layout_margin="2dp"
 	    android:id="@+id/right_btn"
 	    android:text="@string/edit"
 	    android:textColor="@color/title_btn_text_color"/>
