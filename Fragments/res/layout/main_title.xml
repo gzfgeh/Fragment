@@ -20,6 +20,7 @@
 	    android:layout_weight="1"
 	    android:layout_gravity="center"
 	    android:gravity="center"
+	    android:id="@+id/title_text"
 	    android:text="@string/title"
 	    android:textColor="@color/title_btn_text_color"
 	    android:textSize="24sp"/>
