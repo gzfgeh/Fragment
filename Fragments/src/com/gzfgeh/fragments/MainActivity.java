@@ -32,7 +32,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 	private ViewPager viewPager;
 	private FragmentPagerAdapter fragmentPagerAdapter;
 	private List<Fragment> fragments = new ArrayList<Fragment>();
-	private int currentSelect = -1;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,67 +58,10 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 			};
             
 			viewPager.setAdapter(fragmentPagerAdapter);
-			
 			viewPager.setOnPageChangeListener(this);
-			
-            //selectFragmentNum(0);
         }
     }
-
-
-    @SuppressLint("ResourceAsColor") private void selectFragmentNum(int i) {
-		// TODO Auto-generated method stub
-		FragmentTransaction ft = fragmentManager.beginTransaction();
-		//hideAllFragments(ft);
-		resetSelected();
-		currentSelect = i;
-		switch (i) {
-		case 0:
-			titleText.setText(R.string.text);
-			textView.setTextColor(getResources().getColor(R.color.title_bg));
-			ft.show(textFragment);
-			break;
-			
-		case 1:
-			titleText.setText(R.string.photo);
-			photoView.setTextColor(getResources().getColor(R.color.title_bg));
-			ft.show(photoFragment);
-			break;
-			
-		case 2:
-			titleText.setText(R.string.sounds);
-			soundsView.setTextColor(getResources().getColor(R.color.title_bg));
-			ft.show(soundsFragment);
-			break;
-			
-		case 3:
-			titleText.setText(R.string.movie);
-			movieView.setTextColor(getResources().getColor(R.color.title_bg));;
-			ft.show(movieFragment);
-			break;
-			
-		default:
-			break;
-		}
-		ft.commit();
-	}
-
-
-	private void hideAllFragments(FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		if (textFragment != null)
-			ft.hide(textFragment);
-		
-		if (soundsFragment != null)
-			ft.hide(soundsFragment);
-		
-		if (photoFragment != null)
-			ft.hide(photoFragment);
-		
-		if (movieFragment != null)
-			ft.hide(movieFragment);
-	}
-	
+    
 	@SuppressLint("ResourceAsColor") private void resetSelected(){
 		textView.setTextColor(R.color.bottom_bg);
 		soundsView.setTextColor(R.color.bottom_bg);
@@ -169,9 +111,6 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -184,19 +123,19 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 		// TODO Auto-generated method stub
 		switch (view.getId()) {
 		case R.id.text_layout:
-			onPageSelected(0);
+			viewPager.setCurrentItem(0);
 			break;
 
 		case R.id.photo_layout:
-			onPageSelected(1);
+			viewPager.setCurrentItem(1);
 			break;
 			
 		case R.id.sounds_layout:
-			onPageSelected(2);
+			viewPager.setCurrentItem(2);
 			break;
 			
 		case R.id.movie_layout:
-			onPageSelected(3);
+			viewPager.setCurrentItem(3);
 			break;
 			
 		default:
@@ -244,7 +183,5 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 			movieView.setTextColor(getResources().getColor(R.color.title_bg));
 			break;
 		}
-		
-		currentSelect = position;
 	}
 }
