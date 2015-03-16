@@ -16,7 +16,7 @@
         android:layout_height="50dp"
         android:id="@+id/bottom"
         android:layout_alignParentBottom="true"
-        android:name="com.gzfgeh.fragments.BottomFragment">>
+        android:name="com.gzfgeh.fragments.BottomFragment">
     </fragment>
 	
 	<android.support.v4.view.ViewPager
@@ -26,6 +26,6 @@
         android:layout_above="@id/bottom"
         android:layout_below="@id/title">
     </android.support.v4.view.ViewPager>
-
+    
 </RelativeLayout>
 

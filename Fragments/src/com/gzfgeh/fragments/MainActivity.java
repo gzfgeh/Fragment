@@ -11,13 +11,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
 import android.annotation.SuppressLint;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener, OnPageChangeListener {
@@ -32,6 +38,11 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 	private ViewPager viewPager;
 	private FragmentPagerAdapter fragmentPagerAdapter;
 	private List<Fragment> fragments = new ArrayList<Fragment>();
+	private ImageView cursorView;
+	private int cursorWidth;
+	private int currentIndex;
+	private int cursorOffset;
+	private int pageOffset;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +95,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 		photoView = (TextView) findViewById(R.id.photo_msg);
 		movieView = (TextView) findViewById(R.id.movie_msg);
 		titleText = (TextView) findViewById(R.id.title_text);
-		
+		cursorView = (ImageView) findViewById(R.id.cursor);
 		viewPager = (ViewPager) findViewById(R.id.container);
 		textFragment = new TextFragment();
 		soundsFragment = new SoundsFragment();
@@ -94,6 +105,16 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 		fragments.add(photoFragment);
 		fragments.add(soundsFragment);
 		fragments.add(movieFragment);
+		
+		cursorWidth = BitmapFactory.decodeResource(getResources(), R.drawable.cursor).getWidth();
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+		int screenWidth = displayMetrics.widthPixels;
+		cursorOffset = (screenWidth/4 - cursorWidth) / 2;
+		Matrix matrix = new Matrix();
+		matrix.postTranslate(cursorOffset, 0);
+		cursorView.setImageMatrix(matrix);
+		pageOffset = cursorOffset * 2 + cursorWidth;
 		
 		titleText.setText(R.string.text);
 		textView.setTextColor(getResources().getColor(R.color.title_bg));
@@ -161,6 +182,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 	@Override
 	public void onPageSelected(int position) {
 		// TODO Auto-generated method stub
+		cursorViewAnimation(position);
 		resetSelected();
 		
 		switch (position) {
@@ -183,5 +205,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 			movieView.setTextColor(getResources().getColor(R.color.title_bg));
 			break;
 		}
+	}
+
+	private void cursorViewAnimation(int position) {
+		Animation animation = new TranslateAnimation(currentIndex * pageOffset, position * pageOffset, 0, 0);
+		currentIndex = position;
+		animation.setFillAfter(true);
+		animation.setDuration(200);
+		cursorView.startAnimation(animation);
 	}
 }
