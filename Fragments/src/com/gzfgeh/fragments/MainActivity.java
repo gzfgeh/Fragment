@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
+import android.R.integer;
 import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -167,14 +168,12 @@ public class MainActivity extends ActionBarActivity implements OnClickListener, 
 
 	@Override
 	public void onPageScrollStateChanged(int position) {
-		// TODO Auto-generated method stub
 		
 	}
 
 
 	@Override
-	public void onPageScrolled(int arg0, float arg1, int arg2) {
-		// TODO Auto-generated method stub
+	public void onPageScrolled(int currentPage, float percentage, int offsetPix) {
 		
 	}
 
